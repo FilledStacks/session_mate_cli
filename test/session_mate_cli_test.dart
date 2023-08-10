@@ -1,0 +1,8 @@
+import 'package:session_mate_cli/session_mate_cli.dart';
+import 'package:test/test.dart';
+
+void main() {
+  test('calculate', () {
+    expect(calculate(), 42);
+  });
+}
