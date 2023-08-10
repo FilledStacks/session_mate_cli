@@ -1,9 +1,9 @@
-import 'package:sweetcore/datamodels/session_runner_configuration.dart';
-import 'package:sweetcore/datamodels/testmodels/test_tree.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 Future<void> main(List<String> arguments) async {
+  print('Starting sweet core');
   final sweetCore = await SweetCore.setup();
+  print('Sweet core constructed');
   await sweetCore.initialise();
 
   print('SweetCore initialised');
@@ -18,10 +18,10 @@ Future<void> main(List<String> arguments) async {
 
   await sweetCore.startFlutterAppForDriving();
 
-  final testSuite = TestTree([]);
+  // final testSuite = TestTree([]);
 
-  await sweetCore.runSelectedTests(
-    testTree: testSuite,
-    testRunnerConfiguration: SessionRunnerConfiguration(),
-  );
+  // await sweetCore.runSelectedTests(
+  //   testTree: testSuite,
+  //   testRunnerConfiguration: SessionRunnerConfiguration(),
+  // );
 }
