@@ -12,6 +12,7 @@ dependencies:
     path: ../sweetcore
   flutter_driver:
     sdk: flutter
+  args: ^2.4.2
 
   
 
