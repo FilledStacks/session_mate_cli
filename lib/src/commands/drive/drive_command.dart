@@ -3,15 +3,11 @@ import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
-import 'package:session_mate_cli/src/services/process_service.dart';
-import 'package:session_mate_cli/src/services/pub_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 class DriveCommand extends Command {
   // final _analyticsService = locator<AnalyticsService>();
   final _logger = locator<LoggerService>();
-  final _processService = locator<ProcessService>();
-  final _pubService = locator<PubService>();
 
   @override
   String get description => kCommandDriveDescription;
@@ -61,7 +57,7 @@ class DriveCommand extends Command {
       );
 
       // unawaited(_analyticsService.createServiceEvent(name: serviceName));
-    } catch (e, s) {
+    } catch (e, _) {
       _logger.error(message: e.toString());
       // unawaited(_analyticsService.logExceptionEvent(
       //   runtimeType: e.runtimeType.toString(),

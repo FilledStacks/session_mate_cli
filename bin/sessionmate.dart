@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/commands/drive/drive_command.dart';
 import 'package:session_mate_cli/src/commands/update/update_command.dart';
@@ -49,7 +48,7 @@ Future<void> main(List<String> arguments) async {
     await _notifyNewVersionAvailable(arguments: arguments);
 
     runner.run(arguments);
-  } catch (e, s) {
+  } catch (e, _) {
     stdout.writeln(e.toString());
     // locator<AnalyticsService>().logExceptionEvent(
     //   runtimeType: e.runtimeType.toString(),

@@ -83,7 +83,7 @@ class ProcessService {
       final exitCode = await process.exitCode;
 
       if (verbose) logSuccessStatus(exitCode);
-    } on ProcessException catch (e, s) {
+    } on ProcessException catch (e, _) {
       final message =
           'Command failed. Command executed: $programName ${arguments.join(' ')}\nException: ${e.message}';
       _logger.error(message: message);
@@ -92,7 +92,7 @@ class ProcessService {
       //   message: message,
       //   stackTrace: s.toString(),
       // );
-    } catch (e, s) {
+    } catch (e, _) {
       final message =
           'Command failed. Command executed: $programName ${arguments.join(' ')}\nException: ${e.toString()}';
       _logger.error(message: message);
