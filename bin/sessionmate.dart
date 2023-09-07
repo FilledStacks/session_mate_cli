@@ -45,7 +45,7 @@ Future<void> main(List<String> arguments) async {
 
     // if (_handleAnalytics(argResults)) exit(0);
 
-    await _notifyNewVersionAvailable(arguments: arguments);
+    // await _notifyNewVersionAvailable(arguments: arguments);
 
     runner.run(arguments);
   } catch (e, _) {
