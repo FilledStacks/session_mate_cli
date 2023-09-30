@@ -7,6 +7,7 @@ const String ksDisableAnalytics = 'disable-analytics';
 const String ksEnableAnalytics = 'enable-analytics';
 const String ksGlobal = 'global';
 const String ksList = 'list';
+const String ksLogSweetCoreEvents = 'log-sweet-core-events';
 const String ksPath = 'path';
 const String ksPub = 'pub';
 const String ksSessionMateCli = 'session_mate_cli';

@@ -17,6 +17,11 @@ class DriveCommand extends Command {
 
   DriveCommand() {
     argParser
+      ..addFlag(
+        ksLogSweetCoreEvents,
+        defaultsTo: false,
+        help: kCommandDriveHelpLogSweetCoreEvents,
+      )
       ..addOption(
         ksDelay,
         abbr: 'd',
@@ -36,20 +41,22 @@ class DriveCommand extends Command {
   @override
   Future<void> run() async {
     try {
-      _logger.sessionMateOutput(message: 'Starting sweet core');
+      _logger.sessionMateOutput(message: 'Starting SweetCore...');
+
       final sweetCore = await SweetCore.setup();
-      _logger.sessionMateOutput(message: 'Sweet core constructed');
       await sweetCore.initialise();
 
       _logger.sessionMateOutput(message: 'SweetCore initialised');
 
-      sweetCore.logsStream.listen((event) {
-        print(event.toJson());
-      });
+      if (argResults![ksLogSweetCoreEvents]) {
+        sweetCore.logsStream.listen((event) {
+          print('🤖 ${event.toJson()}');
+        });
 
-      sweetCore.stepTraceStream.listen((event) {
-        print(event.toJson());
-      });
+        sweetCore.stepTraceStream.listen((event) {
+          print('🤖 ${event.toJson()}');
+        });
+      }
 
       await sweetCore.startFlutterAppForDriving(
         appPath: argResults![ksPath],

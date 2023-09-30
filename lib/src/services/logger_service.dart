@@ -15,7 +15,7 @@ class LoggerService {
   ///   pen (AnsiPen): The pen to use to color the text.
   ///   message (String): The message to be printed.
   void coloredPrint(AnsiPen pen, {required String message}) {
-    stdout.writeln(pen(message));
+    stdout.writeln(pen('💻 $message'));
   }
 
   /// `flutterOutput` is a function that takes a `message` as a required parameter and prints it to the

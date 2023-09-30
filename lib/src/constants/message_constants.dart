@@ -19,6 +19,9 @@ const String kCommandDriveName = 'drive';
 const String kCommandDriveHelpDelay =
     'Sets the delay in milliseconds between each step.';
 
+const String kCommandDriveHelpLogSweetCoreEvents =
+    'Enable the log of SweetCore events.';
+
 const String kCommandDriveHelpPath = 'Sets the path of the guest application.';
 
 const String kCommandUpdateDescription =
