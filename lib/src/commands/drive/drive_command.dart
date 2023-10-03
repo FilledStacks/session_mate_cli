@@ -42,6 +42,11 @@ class DriveCommand extends Command {
         mandatory: true,
         help: kCommandDriveHelpApiKey,
         valueHelp: 'XXXXX-XXX-XXXXXXX-XX',
+      )
+      ..addOption(
+        ksAdditionalCommands,
+        help: kCommandDriveHelpApiKey,
+        valueHelp: 'XXXXX-XXX-XXXXXXX-XX',
       );
   }
 
@@ -68,6 +73,7 @@ class DriveCommand extends Command {
       await sweetCore.startFlutterAppForDriving(
         appPath: argResults![ksPath],
         apiKey: argResults![ksApiKey],
+        additionalCommands: argResults![ksAdditionalCommands],
         delay: int.parse(argResults![ksDelay]),
       );
 

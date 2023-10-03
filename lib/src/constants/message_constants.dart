@@ -26,6 +26,9 @@ const String kCommandDriveHelpPath = 'Sets the path of the guest application.';
 const String kCommandDriveHelpApiKey =
     'The API key provided when you bought your subscription. Contact dane@sessionmate.dev if you didn\'t receive one when you signed up.';
 
+const String kCommandDriveHelpAdditionalCommands =
+    'The command to attatch at the end of flutter run command. Commonly used for passing in dart-defines or flavors';
+
 const String kCommandUpdateDescription =
     'Updates session_mate_cli to latest version.';
 

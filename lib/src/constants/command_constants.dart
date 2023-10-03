@@ -10,6 +10,7 @@ const String ksList = 'list';
 const String ksLogSweetCoreEvents = 'log-sweet-core-events';
 const String ksPath = 'path';
 const String ksApiKey = 'api-key';
+const String ksAdditionalCommands = 'additional-commands';
 const String ksPub = 'pub';
 const String ksSessionMateCli = 'session_mate_cli';
 const String ksVersion = 'version';
