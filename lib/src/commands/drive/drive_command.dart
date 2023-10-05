@@ -62,11 +62,11 @@ class DriveCommand extends Command {
 
       if (argResults![ksLogSweetCoreEvents]) {
         sweetCore.logsStream.listen((event) {
-          print('🤖 ${event.toJson()}');
+          print(event.toString());
         });
 
         sweetCore.stepTraceStream.listen((event) {
-          print('🤖 ${event.toJson()}');
+          print('🤖 ${event.toString()}');
         });
       }
 

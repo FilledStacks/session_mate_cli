@@ -9,7 +9,16 @@
             "request": "launch",
             "type": "dart",
             "program": "bin/sessionmate.dart",
-            "args": ["drive","-p", "../bookshelf/"]
+            "args": [
+                "drive",
+                "-p",
+                "../session_mate/example",
+                "-a",
+                "44ee4cf3-37ec-460a-a2c8-bacc61f64f9e",
+                "--additional-commands",
+                "--dart-define=USE_FAKE_DATA=true",
+                "--log-sweet-core-events"
+            ]
         }
     ]
 }
