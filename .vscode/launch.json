@@ -11,13 +11,11 @@
             "program": "bin/sessionmate.dart",
             "args": [
                 "drive",
+                "--log-sweet-core-events",
                 "-p",
                 "../session_mate/example",
                 "-a",
-                "44ee4cf3-37ec-460a-a2c8-bacc61f64f9e",
-                "--additional-commands",
-                "--dart-define=USE_FAKE_DATA=true",
-                "--log-sweet-core-events"
+                "PUT_API_KEY_HERE",
             ]
         }
     ]
