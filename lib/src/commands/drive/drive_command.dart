@@ -45,8 +45,7 @@ class DriveCommand extends Command {
       )
       ..addOption(
         ksAdditionalCommands,
-        help: kCommandDriveHelpApiKey,
-        valueHelp: 'XXXXX-XXX-XXXXXXX-XX',
+        help: kCommandDriveHelpAdditionalCommands,
       );
   }
 
