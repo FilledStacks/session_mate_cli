@@ -16,6 +16,13 @@ const String kCommandDriveDescription = 'Drives guest app.';
 
 const String kCommandDriveName = 'drive';
 
+const String kCommandDriveSweetCoreStarts = 'Starting SweetCore...';
+
+const String kCommandDriveSweetCoreInitialised = 'SweetCore initialised';
+
+const String kCommandDriveLocalModeOnly =
+    'Session Mate restricted to local mode only. To enable extra features 🔥 please set your API key.';
+
 const String kCommandDriveHelpDelay =
     'Sets the delay in milliseconds between each step.';
 
@@ -27,7 +34,7 @@ const String kCommandDriveHelpApiKey =
     'The API key provided when you bought your subscription. Contact dane@sessionmate.dev if you didn\'t receive one when you signed up.';
 
 const String kCommandDriveHelpAdditionalCommands =
-    'The command to attatch at the end of flutter run command. Commonly used for passing in dart-defines or flavors';
+    'The command to attatch at the end of flutter run command. Commonly used for passing in dart-defines or flavors.';
 
 const String kCommandUpdateDescription =
     'Updates session_mate_cli to latest version.';

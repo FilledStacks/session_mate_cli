@@ -39,7 +39,6 @@ class DriveCommand extends Command {
       ..addOption(
         ksApiKey,
         abbr: 'a',
-        mandatory: true,
         help: kCommandDriveHelpApiKey,
         valueHelp: 'XXXXX-XXX-XXXXXXX-XX',
       )
@@ -52,12 +51,16 @@ class DriveCommand extends Command {
   @override
   Future<void> run() async {
     try {
-      _logger.sessionMateOutput(message: 'Starting SweetCore...');
+      _logger.sessionMateOutput(message: kCommandDriveSweetCoreStarts);
 
       final sweetCore = await SweetCore.setup();
       await sweetCore.initialise();
 
-      _logger.sessionMateOutput(message: 'SweetCore initialised');
+      _logger.sessionMateOutput(message: kCommandDriveSweetCoreInitialised);
+
+      if (argResults![ksApiKey] == null) {
+        _logger.sessionMateOutput(message: kCommandDriveLocalModeOnly);
+      }
 
       if (argResults![ksLogSweetCoreEvents]) {
         sweetCore.logsStream.listen((event) {
