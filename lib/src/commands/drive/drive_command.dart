@@ -62,11 +62,14 @@ class DriveCommand extends Command {
         _logger.sessionMateOutput(message: kCommandDriveLocalModeOnly);
       }
 
+      sweetCore.logsStream.listen((event) {
+        print('');
+        print('SessionMate driver --------------------------');
+        print(event.toString());
+        print('--------------------------------------------');
+        print('');
+      });
       if (argResults![ksLogSweetCoreEvents]) {
-        sweetCore.logsStream.listen((event) {
-          print(event.toString());
-        });
-
         sweetCore.stepTraceStream.listen((event) {
           print('🤖 ${event.toString()}');
         });
