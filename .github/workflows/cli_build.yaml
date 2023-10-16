@@ -18,9 +18,9 @@ jobs:
           # - runs-on: ubuntu-latest
           #   binary-name: sessionmate_linux_amd64
           - runs-on: macos-latest
-            binary-name: sessionmate_macos_amd64
+            compressed-name: sessionmate_macos_x86_64.tar.gz
           - runs-on: macos-latest-large
-            binary-name: sessionmate_macos_arm
+            compressed-name: sessionmate_macos_arm64.tar.gz
           # - runs-on: windows-latest
           #   binary-name: sessionmate_windows.exe
     runs-on: ${{ matrix.runs-on }}
@@ -36,10 +36,11 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get
       - run: mkdir ${{ matrix.runs-on }}
-      - run: dart compile exe bin/sessionmate.dart -o ${{ matrix.runs-on }}/${{ matrix.binary-name }}
+      - run: dart compile exe bin/sessionmate.dart -o ${{ matrix.runs-on }}/sessionmate
+      - run: tar -cvzf ${{ matrix.runs-on }}/${{ matrix.compressed-name }} ${{ matrix.runs-on }}/sessionmate
       - uses: actions/upload-artifact@v2
         with:
-          name: bin-${{ matrix.runs-on }}
+          name: compressed-${{ matrix.runs-on }}
           path: ${{ matrix.runs-on }}
   
   release:
@@ -49,13 +50,23 @@ jobs:
     steps:
       - uses: actions/download-artifact@v2
         with:
-          name: bin-macos-latest
-          path: bin-macos
+          name: compressed-macos-latest
+          path: compressed-macos
       - uses: actions/download-artifact@v2
         with:
-          name: bin-macos-latest-large
-          path: bin-macos-large
+          name: compressed-macos-latest-large
+          path: compressed-macos-large
       - uses: softprops/action-gh-release@v1
         with:
           draft: true
-          files: bin-*/*
+          files: |
+            compressed-*/*.tar.gz
+      - name: Bump homebrew-tap formula
+        uses: mislav/bump-homebrew-formula-action@v2
+        env:
+          COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          formula-name: sessionmate
+          formula-path: sessionmate.rb
+          homebrew-tap: FilledStacks/homebrew-tap
