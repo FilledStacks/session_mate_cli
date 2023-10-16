@@ -17,16 +17,19 @@ dependencies:
   path: ^1.8.1
   pub_updater: ^0.3.0
   pubspec_yaml: ^3.1.0
+  usage: ^4.1.1
   
   sweetcore:
     git:
       url: git@github.com:filledstacks/sweetcore.git
 
-  usage: ^4.1.1
-
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.0
+
+dependency_overrides:
+  sweetcore:
+    path: ../sweetcore
 
 executables:
   session_mate:
