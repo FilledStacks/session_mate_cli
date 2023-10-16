@@ -22,6 +22,10 @@ jobs:
           #   binary-name: sessionmate_windows.exe
     runs-on: ${{ matrix.runs-on }}
     steps:
+      - name: Give GitHub Actions access to sweetcore
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SWEETCORE_REPLOY_KEY }}
       - uses: actions/checkout@v2
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get
