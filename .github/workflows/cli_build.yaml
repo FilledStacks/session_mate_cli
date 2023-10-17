@@ -61,12 +61,12 @@ jobs:
           draft: true
           files: |
             compressed-*/*.tar.gz
-      - name: Bump homebrew-tap formula
-        uses: mislav/bump-homebrew-formula-action@v2
-        env:
-          COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          formula-name: sessionmate
-          formula-path: sessionmate.rb
-          homebrew-tap: FilledStacks/homebrew-tap
+      # - name: Bump homebrew-tap formula
+      #   uses: mislav/bump-homebrew-formula-action@v2
+      #   env:
+      #     COMMITTER_TOKEN: ${{ secrets.BREW_TOKEN }}
+      #     # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     formula-name: sessionmate
+      #     formula-path: sessionmate.rb
+      #     homebrew-tap: FilledStacks/homebrew-tap
