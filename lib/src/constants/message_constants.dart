@@ -29,6 +29,9 @@ const String kCommandDriveHelpDelay =
 const String kCommandDriveHelpLogSweetCoreEvents =
     'Enable the log of SweetCore events.';
 
+const String kCommandDriveHelpVerbose =
+    'Noisy logging, including all shell commands executed.';
+
 const String kCommandDriveHelpPath = 'Sets the path of the guest application.';
 const String kCommandDriveHelpApiKey =
     'The API key provided when you bought your subscription. Contact dane@sessionmate.dev if you didn\'t receive one when you signed up.';
