@@ -13,6 +13,7 @@ const String ksApiKey = 'api-key';
 const String ksAdditionalCommands = 'additional-commands';
 const String ksPub = 'pub';
 const String ksSessionMateCli = 'session_mate_cli';
+const String ksVerbose = 'verbose';
 const String ksVersion = 'version';
 
 /// A list of strings that are used to run the pub global list command.

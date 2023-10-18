@@ -21,6 +21,14 @@ class DriveCommand extends Command {
         ksLogSweetCoreEvents,
         defaultsTo: false,
         help: kCommandDriveHelpLogSweetCoreEvents,
+        negatable: false,
+      )
+      ..addFlag(
+        ksVerbose,
+        abbr: 'v',
+        defaultsTo: false,
+        help: kCommandDriveHelpVerbose,
+        negatable: false,
       )
       ..addOption(
         ksDelay,
@@ -62,13 +70,16 @@ class DriveCommand extends Command {
         _logger.sessionMateOutput(message: kCommandDriveLocalModeOnly);
       }
 
-      sweetCore.logsStream.listen((event) {
-        print('');
-        print('SessionMate driver --------------------------');
-        print(event.toString());
-        print('--------------------------------------------');
-        print('');
-      });
+      if (argResults![ksVerbose]) {
+        sweetCore.logsStream.listen((event) {
+          print('');
+          print('SessionMate driver --------------------------');
+          print(event.toString());
+          print('--------------------------------------------');
+          print('');
+        });
+      }
+
       if (argResults![ksLogSweetCoreEvents]) {
         sweetCore.stepTraceStream.listen((event) {
           print('🤖 ${event.toString()}');
@@ -80,6 +91,7 @@ class DriveCommand extends Command {
         apiKey: argResults![ksApiKey],
         additionalCommands: argResults![ksAdditionalCommands],
         delay: int.parse(argResults![ksDelay]),
+        verbose: argResults![ksVerbose],
       );
 
       // unawaited(_analyticsService.createServiceEvent(name: serviceName));
