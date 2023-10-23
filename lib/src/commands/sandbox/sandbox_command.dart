@@ -85,6 +85,7 @@ class SandboxCommand extends Command {
 
       List<UIEvent> events = [
         InputEvent(
+          overrideAutomationKey: 'input_field',
           position: EventPosition(
             x: 184.4,
             y: 402.2,
@@ -93,14 +94,13 @@ class SandboxCommand extends Command {
           ),
           inputData: 'This is entered',
         ),
-        RawKeyEvent(
-          type: InteractionType.onKeyboardEnterEvent,
-        )
+        RawKeyEvent(type: InteractionType.onKeyboardEnterEvent),
+        RawKeyEvent(type: InteractionType.backPressEvent),
       ];
 
       await sweetCore.replayEvents(events: events);
-    } catch (e, _) {
-      _logger.error(message: e.toString());
+    } catch (e, s) {
+      _logger.error(message: '${e.toString()} STACKTRACE: \n$s');
     }
   }
 }
