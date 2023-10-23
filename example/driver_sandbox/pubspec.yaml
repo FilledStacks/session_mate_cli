@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_driver:
+    sdk: flutter
   stacked: ^3.4.0
   stacked_services: ^1.1.0
 
