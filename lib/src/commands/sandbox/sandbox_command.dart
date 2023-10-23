@@ -5,17 +5,16 @@ import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
-class DriveCommand extends Command {
-  // final _analyticsService = locator<AnalyticsService>();
+class SandboxCommand extends Command {
   final _logger = locator<LoggerService>();
 
   @override
-  String get description => kCommandDriveDescription;
+  String get description => kCommandSandboxDescription;
 
   @override
-  String get name => kCommandDriveName;
+  String get name => kCommandSandboxName;
 
-  DriveCommand() {
+  SandboxCommand() {
     argParser
       ..addFlag(
         ksLogSweetCoreEvents,
@@ -45,12 +44,6 @@ class DriveCommand extends Command {
         valueHelp: '.',
       )
       ..addOption(
-        ksApiKey,
-        abbr: 'a',
-        help: kCommandDriveHelpApiKey,
-        valueHelp: 'XXXXX-XXX-XXXXXXX-XX',
-      )
-      ..addOption(
         ksAdditionalCommands,
         help: kCommandDriveHelpAdditionalCommands,
       );
@@ -73,7 +66,7 @@ class DriveCommand extends Command {
       if (argResults![ksVerbose]) {
         sweetCore.logsStream.listen((event) {
           print('');
-          print('SessionMate driver --------------------------');
+          print('SANDBOX: Driver --------------------------');
           print(event.toString());
           print('--------------------------------------------');
           print('');
@@ -90,11 +83,8 @@ class DriveCommand extends Command {
         appPath: argResults![ksPath],
         apiKey: argResults![ksApiKey],
         additionalCommands: argResults![ksAdditionalCommands],
-        verbose: argResults![ksVerbose],
-      );
-
-      await sweetCore.setupCommunicationWithPackage(
         delay: int.parse(argResults![ksDelay]),
+        verbose: argResults![ksVerbose],
       );
     } catch (e, _) {
       _logger.error(message: e.toString());

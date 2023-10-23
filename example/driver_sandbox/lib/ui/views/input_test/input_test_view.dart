@@ -12,6 +12,7 @@ class InputTestView extends StackedView<InputTestViewModel> {
     InputTestViewModel viewModel,
     Widget? child,
   ) {
+    print('Size: ${MediaQuery.sizeOf(context)}');
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
