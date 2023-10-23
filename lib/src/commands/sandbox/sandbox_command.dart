@@ -3,6 +3,7 @@ import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
+import 'package:session_mate_core/session_mate_core.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 class SandboxCommand extends Command {
@@ -59,10 +60,6 @@ class SandboxCommand extends Command {
 
       _logger.sessionMateOutput(message: kCommandDriveSweetCoreInitialised);
 
-      if (argResults![ksApiKey] == null) {
-        _logger.sessionMateOutput(message: kCommandDriveLocalModeOnly);
-      }
-
       if (argResults![ksVerbose]) {
         sweetCore.logsStream.listen((event) {
           print('');
@@ -81,11 +78,27 @@ class SandboxCommand extends Command {
 
       await sweetCore.startFlutterAppForDriving(
         appPath: argResults![ksPath],
-        apiKey: argResults![ksApiKey],
         additionalCommands: argResults![ksAdditionalCommands],
         delay: int.parse(argResults![ksDelay]),
         verbose: argResults![ksVerbose],
       );
+
+      List<UIEvent> events = [
+        InputEvent(
+          position: EventPosition(
+            x: 184.4,
+            y: 402.2,
+            capturedDeviceHeight: 802.9,
+            capturedDeviceWidth: 392.7,
+          ),
+          inputData: 'This is entered',
+        ),
+        RawKeyEvent(
+          type: InteractionType.onKeyboardEnterEvent,
+        )
+      ];
+
+      await sweetCore.replayEvents(events: events);
     } catch (e, _) {
       _logger.error(message: e.toString());
     }

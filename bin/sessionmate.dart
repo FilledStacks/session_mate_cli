@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/commands/drive/drive_command.dart';
+import 'package:session_mate_cli/src/commands/sandbox/sandbox_command.dart';
 import 'package:session_mate_cli/src/commands/update/update_command.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
@@ -32,6 +33,7 @@ Future<void> main(List<String> arguments) async {
       help: kCommandRunnerDisableAnalyticsHelp,
     )
     ..addCommand(DriveCommand())
+    ..addCommand(SandboxCommand())
     ..addCommand(UpdateCommand());
 
   try {

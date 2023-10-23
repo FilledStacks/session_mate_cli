@@ -22,6 +22,8 @@ dependencies:
   sweetcore:
     git:
       url: git@github.com:filledstacks/sweetcore.git
+  
+  session_mate_core:
 
 dev_dependencies:
   lints: ^2.0.0
@@ -30,6 +32,8 @@ dev_dependencies:
 dependency_overrides:
   sweetcore:
     path: ../sweetcore
+  session_mate_core:
+    path: ../session_mate_core
 
 executables:
   session_mate:
