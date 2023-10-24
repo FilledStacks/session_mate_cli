@@ -58,7 +58,6 @@ jobs:
           path: compressed-macos-large
       - uses: softprops/action-gh-release@v1
         with:
-          draft: true
           files: |
             compressed-*/*.tar.gz
       # - name: Bump homebrew-tap formula
