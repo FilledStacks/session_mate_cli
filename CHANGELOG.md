@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Adds sandbox command for testing
+
 ## 0.3.0
 
 - Adds command to pass in the record session variable when running Flutter

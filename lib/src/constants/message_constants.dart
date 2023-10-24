@@ -42,4 +42,8 @@ const String kCommandDriveHelpAdditionalCommands =
 const String kCommandUpdateDescription =
     'Updates session_mate_cli to latest version.';
 
+const String kCommandSandboxDescription =
+    'Uses the sandbox app to test individual pieces of the CLI.';
+
 const String kCommandUpdateName = 'update';
+const String kCommandSandboxName = 'sandbox';

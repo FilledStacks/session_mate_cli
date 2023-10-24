@@ -90,18 +90,14 @@ class DriveCommand extends Command {
         appPath: argResults![ksPath],
         apiKey: argResults![ksApiKey],
         additionalCommands: argResults![ksAdditionalCommands],
-        delay: int.parse(argResults![ksDelay]),
         verbose: argResults![ksVerbose],
       );
 
-      // unawaited(_analyticsService.createServiceEvent(name: serviceName));
+      await sweetCore.setupCommunicationWithPackage(
+        delay: int.parse(argResults![ksDelay]),
+      );
     } catch (e, _) {
       _logger.error(message: e.toString());
-      // unawaited(_analyticsService.logExceptionEvent(
-      //   runtimeType: e.runtimeType.toString(),
-      //   message: e.toString(),
-      //   stackTrace: s.toString(),
-      // ));
     }
   }
 }

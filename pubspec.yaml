@@ -1,6 +1,6 @@
 name: session_mate_cli
 description: The command line tool for SessionMate
-version: 0.3.0
+version: 0.4.0
 publish_to: none
 
 environment:
@@ -22,14 +22,18 @@ dependencies:
   sweetcore:
     git:
       url: git@github.com:filledstacks/sweetcore.git
+  
+  session_mate_core:
 
 dev_dependencies:
   lints: ^2.0.0
   test: ^1.21.0
 
-# dependency_overrides:
-#   sweetcore:
-#     path: ../sweetcore
+dependency_overrides:
+  sweetcore:
+    path: ../sweetcore
+  session_mate_core:
+    path: ../session_mate_core
 
 executables:
   session_mate:
