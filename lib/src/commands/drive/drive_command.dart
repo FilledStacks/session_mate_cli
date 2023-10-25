@@ -17,12 +17,12 @@ class DriveCommand extends Command {
 
   DriveCommand() {
     argParser
-      ..addFlag(
-        ksLogSweetCoreEvents,
-        defaultsTo: false,
-        help: kCommandDriveHelpLogSweetCoreEvents,
-        negatable: false,
-      )
+      // ..addFlag(
+      //   ksLogSweetCoreEvents,
+      //   defaultsTo: false,
+      //   help: kCommandDriveHelpLogSweetCoreEvents,
+      //   negatable: false,
+      // )
       ..addFlag(
         ksVerbose,
         abbr: 'v',
@@ -78,9 +78,7 @@ class DriveCommand extends Command {
           print('--------------------------------------------');
           print('');
         });
-      }
 
-      if (argResults![ksLogSweetCoreEvents]) {
         sweetCore.stepTraceStream.listen((event) {
           print('🤖 ${event.toString()}');
         });
