@@ -1,3 +1,13 @@
+## 0.5.0
+
+- Add user environment validation on drive command
+- Remove pubspec_yaml package
+- Add yaml package
+- Update PubspecService to use yaml package
+- Fix sessionmate cli --version option
+- Remove enableAnalytics and disableAnalytics options until is implemented
+- Bump cli version to 0.5.0
+
 ## 0.4.0
 
 - Adds sandbox command for testing

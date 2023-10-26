@@ -11,5 +11,8 @@ Future setupLocator() async {
   locator.registerLazySingleton(() => LoggerService());
   locator.registerLazySingleton(() => ProcessService());
   locator.registerLazySingleton(() => PubService());
-  locator.registerLazySingleton(() => PubspecService());
+
+  final pubspecService = PubspecService();
+  await pubspecService.initialise();
+  locator.registerSingleton(pubspecService);
 }

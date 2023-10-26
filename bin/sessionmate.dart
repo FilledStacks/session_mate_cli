@@ -7,7 +7,7 @@ import 'package:session_mate_cli/src/commands/update/update_command.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/locator.dart';
-import 'package:session_mate_cli/src/services/pub_service.dart';
+import 'package:session_mate_cli/src/services/pubspec_service.dart';
 
 Future<void> main(List<String> arguments) async {
   await setupLocator();
@@ -22,16 +22,16 @@ Future<void> main(List<String> arguments) async {
       negatable: false,
       help: kCommandRunnerVersionHelp,
     )
-    ..argParser.addFlag(
-      ksEnableAnalytics,
-      negatable: false,
-      help: kCommandRunnerEnableAnalyticsHelp,
-    )
-    ..argParser.addFlag(
-      ksDisableAnalytics,
-      negatable: false,
-      help: kCommandRunnerDisableAnalyticsHelp,
-    )
+    // ..argParser.addFlag(
+    //   ksEnableAnalytics,
+    //   negatable: false,
+    //   help: kCommandRunnerEnableAnalyticsHelp,
+    // )
+    // ..argParser.addFlag(
+    //   ksDisableAnalytics,
+    //   negatable: false,
+    //   help: kCommandRunnerDisableAnalyticsHelp,
+    // )
     ..addCommand(DriveCommand())
     ..addCommand(SandboxCommand())
     ..addCommand(UpdateCommand());
@@ -54,5 +54,5 @@ Future<void> main(List<String> arguments) async {
 
 /// Prints version of the application.
 Future<void> _handleVersion() async {
-  stdout.writeln(await locator<PubService>().getCurrentVersion());
+  stdout.writeln(locator<PubspecService>().packageVersion);
 }

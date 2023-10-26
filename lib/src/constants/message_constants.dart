@@ -18,10 +18,16 @@ const String kCommandDriveName = 'drive';
 
 const String kCommandDriveSweetCoreStarts = 'Starting SweetCore...';
 
-const String kCommandDriveSweetCoreInitialised = 'SweetCore initialised';
+const String kCommandDriveSweetCoreInitialised = 'SweetCore initialised ✅';
 
 const String kCommandDriveLocalModeOnly =
     'Session Mate restricted to local mode only. To enable extra features 🔥 please set your API key.';
+
+const String kCommandDriveSweetCoreValidateUserEnvironment =
+    'Validating the user environment...';
+
+const String kCommandDriveSweetCoreValidUserEnvironment =
+    'Valid user environment ✅';
 
 const String kCommandDriveHelpDelay =
     'Sets the delay in milliseconds between each step.';
