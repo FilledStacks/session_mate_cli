@@ -1,13 +1,18 @@
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
+import 'package:session_mate_cli/src/exceptions/invalid_user_environment_exception.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
+import 'package:session_mate_cli/src/services/pubspec_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 class DriveCommand extends Command {
   // final _analyticsService = locator<AnalyticsService>();
   final _logger = locator<LoggerService>();
+  final _pubspecService = locator<PubspecService>();
 
   @override
   String get description => kCommandDriveDescription;
@@ -59,12 +64,31 @@ class DriveCommand extends Command {
   @override
   Future<void> run() async {
     try {
-      _logger.sessionMateOutput(message: kCommandDriveSweetCoreStarts);
+      _logger.sessionMateOutput(
+        message:
+            'Starting SweetCore using SessionMate CLI (${_pubspecService.packageVersion})...',
+      );
 
       final sweetCore = await SweetCore.setup();
       await sweetCore.initialise();
 
       _logger.sessionMateOutput(message: kCommandDriveSweetCoreInitialised);
+
+      _logger.sessionMateOutput(
+        message: kCommandDriveSweetCoreValidateUserEnvironment,
+      );
+
+      final result = await sweetCore.validateUserEnvironment(
+        verbose: argResults![ksVerbose],
+      );
+
+      if (!result.output['status']) {
+        throw InvalidUserEnvironmentException(issues: result.output['issues']);
+      }
+
+      _logger.sessionMateOutput(
+        message: kCommandDriveSweetCoreValidUserEnvironment,
+      );
 
       if (argResults![ksApiKey] == null) {
         _logger.sessionMateOutput(message: kCommandDriveLocalModeOnly);
@@ -94,8 +118,12 @@ class DriveCommand extends Command {
       await sweetCore.setupCommunicationWithPackage(
         delay: int.parse(argResults![ksDelay]),
       );
-    } catch (e, _) {
-      _logger.error(message: e.toString());
+    } on InvalidUserEnvironmentException catch (e, _) {
+      stdout.writeln(e.toString());
+      exit(1);
+    } catch (e, s) {
+      _logger.error(message: 'Error:${e.toString()} StackTrace:\n$s');
+      exit(1);
     }
   }
 }

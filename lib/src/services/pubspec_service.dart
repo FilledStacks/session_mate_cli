@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:pubspec_yaml/pubspec_yaml.dart';
+import 'package:yaml/yaml.dart';
 
 /// Provides functionality to interact with the pubspec in the current project
 class PubspecService {
-  late PubspecYaml pubspecYaml;
+  late Map _yaml;
 
   /// Reads the pubpec and caches the value locally
   Future<void> initialise({String? workingDirectory}) async {
@@ -12,8 +12,11 @@ class PubspecService {
     final pubspecYamlContent = await File(
       '${hasWorkingDirectory ? '$workingDirectory/' : ''}pubspec.yaml',
     ).readAsString();
-    pubspecYaml = pubspecYamlContent.toPubspecYaml();
+
+    _yaml = loadYaml(pubspecYamlContent);
   }
 
-  String get getPackageName => pubspecYaml.name;
+  String get packageName => _yaml['name'];
+
+  String get packageVersion => _yaml['version'];
 }
