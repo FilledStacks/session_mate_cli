@@ -15,6 +15,23 @@ class SandboxCommand extends Command {
   @override
   String get name => kCommandSandboxName;
 
+  Map<String, List<UIEvent>> sandboxReplays = {
+    'onEnterPressed': [
+      InputEvent(
+        overrideAutomationKey: 'input_field',
+        position: EventPosition(
+          x: 184.4,
+          y: 402.2,
+          capturedDeviceHeight: 802.9,
+          capturedDeviceWidth: 392.7,
+        ),
+        inputData: 'This is entered',
+      ),
+      RawKeyEvent(type: InteractionType.onKeyboardEnterEvent),
+      RawKeyEvent(type: InteractionType.backPressEvent),
+    ],
+  };
+
   SandboxCommand() {
     argParser
       ..addFlag(
@@ -43,6 +60,13 @@ class SandboxCommand extends Command {
         defaultsTo: '.',
         help: kCommandDriveHelpPath,
         valueHelp: '.',
+      )
+      ..addOption(
+        ksSandboxSession,
+        abbr: 's',
+        defaultsTo: 'onEnterPressed',
+        help: kCommandSandboxHelpSandboxSession,
+        allowed: sandboxReplays.keys,
       )
       ..addOption(
         ksAdditionalCommands,
@@ -83,22 +107,8 @@ class SandboxCommand extends Command {
         verbose: argResults![ksVerbose],
       );
 
-      List<UIEvent> events = [
-        InputEvent(
-          overrideAutomationKey: 'input_field',
-          position: EventPosition(
-            x: 184.4,
-            y: 402.2,
-            capturedDeviceHeight: 802.9,
-            capturedDeviceWidth: 392.7,
-          ),
-          inputData: 'This is entered',
-        ),
-        RawKeyEvent(type: InteractionType.onKeyboardEnterEvent),
-        RawKeyEvent(type: InteractionType.backPressEvent),
-      ];
-
-      await sweetCore.replayEvents(events: events);
+      await sweetCore.replayEvents(
+          events: sandboxReplays[argResults![ksSandboxSession]]!);
     } catch (e, s) {
       _logger.error(message: '${e.toString()} STACKTRACE: \n$s');
     }
