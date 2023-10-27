@@ -30,10 +30,10 @@ dev_dependencies:
   test: ^1.21.0
 
 dependency_overrides:
-  # sweetcore:
-  #   path: ../sweetcore
-  # session_mate_core:
-  #   path: ../session_mate_core
+  sweetcore:
+    path: ../sweetcore
+  session_mate_core:
+    path: ../session_mate_core
 
 executables:
   session_mate:
