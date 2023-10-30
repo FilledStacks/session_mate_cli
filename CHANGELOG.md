@@ -1,3 +1,8 @@
+## 0.6.0
+
+- Adds new command to sandbox
+- Adds new drag event replay functionality
+
 ## 0.5.0
 
 - Add user environment validation on drive command
