@@ -30,6 +30,24 @@ class SandboxCommand extends Command {
       RawKeyEvent(type: InteractionType.onKeyboardEnterEvent),
       RawKeyEvent(type: InteractionType.backPressEvent),
     ],
+    'drag': [
+      DragEvent(
+        position: EventPosition(x: 540, y: 1000),
+        scrollEnd: EventPosition(x: 540, y: 500),
+      ),
+      DragEvent(
+        position: EventPosition(x: 540, y: 500),
+        scrollEnd: EventPosition(x: 540, y: 1000),
+      ),
+      DragEvent(
+        position: EventPosition(x: 540, y: 1000),
+        scrollEnd: EventPosition(x: 540, y: 500),
+      ),
+      DragEvent(
+        position: EventPosition(x: 540, y: 500),
+        scrollEnd: EventPosition(x: 540, y: 1000),
+      ),
+    ]
   };
 
   SandboxCommand() {

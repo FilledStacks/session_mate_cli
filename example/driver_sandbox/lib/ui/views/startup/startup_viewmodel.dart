@@ -8,6 +8,6 @@ class StartupViewModel extends BaseViewModel {
 
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
-    _navigationService.replaceWithInputTestView();
+    _navigationService.replaceWithDragTestView();
   }
 }
