@@ -13,7 +13,6 @@ class DragTestView extends StackedView<DragTestViewModel> {
     Widget? child,
   ) {
     const double dragIndicatorSize = 20;
-    print('SIZE: ${MediaQuery.sizeOf(context)}');
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: GestureDetector(

@@ -32,20 +32,8 @@ class SandboxCommand extends Command {
     ],
     'drag': [
       DragEvent(
-        position: EventPosition(x: 540, y: 1000),
-        scrollEnd: EventPosition(x: 540, y: 500),
-      ),
-      DragEvent(
-        position: EventPosition(x: 540, y: 500),
-        scrollEnd: EventPosition(x: 540, y: 1000),
-      ),
-      DragEvent(
-        position: EventPosition(x: 540, y: 1000),
-        scrollEnd: EventPosition(x: 540, y: 500),
-      ),
-      DragEvent(
-        position: EventPosition(x: 540, y: 500),
-        scrollEnd: EventPosition(x: 540, y: 1000),
+        position: EventPosition(x: 51, y: 419.3, devicePixelRatio: 3),
+        scrollEnd: EventPosition(x: 305.1, y: 412.3, devicePixelRatio: 3),
       ),
     ]
   };
