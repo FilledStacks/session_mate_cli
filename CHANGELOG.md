@@ -1,3 +1,7 @@
+## 0.6.2
+
+- Update `session_mate_core` package dependency
+
 ## 0.6.1
 
 - Fix package dependencies
