@@ -1,3 +1,7 @@
+## 0.6.1
+
+- Fix package dependencies
+
 ## 0.6.0
 
 - Adds new command to sandbox

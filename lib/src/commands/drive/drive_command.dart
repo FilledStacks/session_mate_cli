@@ -104,7 +104,7 @@ class DriveCommand extends Command {
         });
 
         sweetCore.stepTraceStream.listen((event) {
-          print('🤖 ${event.toString()}');
+          print('🤖 ${event.toJson()}');
         });
       }
 
