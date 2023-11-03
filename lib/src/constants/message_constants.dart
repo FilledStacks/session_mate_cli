@@ -47,11 +47,11 @@ const String kCommandDriveHelpApiKey =
 const String kCommandDriveHelpAdditionalCommands =
     'The command to attatch at the end of flutter run command. Commonly used for passing in dart-defines or flavors.';
 
-const String kCommandUpdateDescription =
-    'Updates session_mate_cli to latest version.';
+const String kCommandUpgradeDescription =
+    'Upgrades sessionmate CLI to latest version.';
 
 const String kCommandSandboxDescription =
     'Uses the sandbox app to test individual pieces of the CLI.';
 
-const String kCommandUpdateName = 'update';
+const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';

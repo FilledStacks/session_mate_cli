@@ -33,6 +33,40 @@ class ProcessService {
     return output;
   }
 
+  /// Runs `brew info sessionmate` command and returns a list of strings
+  /// representing packages with their version.
+  Future<List<String>> runBrewInfo() async {
+    final output = <String>[];
+    await _runProcess(
+      programName: 'brew',
+      arguments: ['info', 'sessionmate'],
+      verbose: false,
+      handleOutput: (lines) async => output.addAll(lines),
+    );
+
+    return output;
+  }
+
+  /// Runs `brew install filledstacks/tap/sessionmate` to install sessionmate
+  /// package on the system through Homebrew.
+  Future<void> runBrewInstallPackage() async {
+    await _runProcess(
+      programName: 'brew',
+      arguments: ['install', 'filledstacks/tap/sessionmate'],
+      verbose: false,
+    );
+  }
+
+  /// Runs `brew upgrade filledstacks/tap/sessionmate` to upgrade sessionmate
+  /// package on the system through Homebrew.
+  Future<void> runBrewUpgradePackage() async {
+    await _runProcess(
+      programName: 'brew',
+      arguments: ['upgrade', 'filledstacks/tap/sessionmate'],
+      verbose: false,
+    );
+  }
+
   /// Runs a process and logs the output to the console when [verbose] is true.
   ///
   /// Args:

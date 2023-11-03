@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/commands/drive/drive_command.dart';
 import 'package:session_mate_cli/src/commands/sandbox/sandbox_command.dart';
-import 'package:session_mate_cli/src/commands/update/update_command.dart';
+import 'package:session_mate_cli/src/commands/update/upgrade_command.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/locator.dart';
-import 'package:session_mate_cli/src/services/pubspec_service.dart';
+import 'package:session_mate_cli/src/services/brew_service.dart';
 
 Future<void> main(List<String> arguments) async {
   await setupLocator();
@@ -34,7 +34,7 @@ Future<void> main(List<String> arguments) async {
     // )
     ..addCommand(DriveCommand())
     ..addCommand(SandboxCommand())
-    ..addCommand(UpdateCommand());
+    ..addCommand(UpgradeCommand());
 
   try {
     final argResults = runner.parse(arguments);
@@ -54,5 +54,5 @@ Future<void> main(List<String> arguments) async {
 
 /// Prints version of the application.
 Future<void> _handleVersion() async {
-  stdout.writeln(locator<PubspecService>().packageVersion);
+  stdout.writeln(await locator<BrewService>().getCurrentVersion());
 }

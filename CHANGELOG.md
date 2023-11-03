@@ -1,3 +1,11 @@
+## 0.6.3
+
+- Fix sessionmate `version` option
+- Change `update` option to `upgrade` option
+- Fix `upgrade` option
+- Remove `PubspecService`
+- Update packages dependencies
+
 ## 0.6.2
 
 - Update `session_mate_core` package dependency

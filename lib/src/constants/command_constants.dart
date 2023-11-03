@@ -13,7 +13,7 @@ const String ksSandboxSession = 'sandbox-session';
 const String ksApiKey = 'api-key';
 const String ksAdditionalCommands = 'additional-commands';
 const String ksPub = 'pub';
-const String ksSessionMateCli = 'session_mate_cli';
+const String ksSessionMateCli = 'sessionmate';
 const String ksVerbose = 'verbose';
 const String ksVersion = 'version';
 

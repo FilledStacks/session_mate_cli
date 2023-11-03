@@ -5,14 +5,14 @@ import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/exceptions/invalid_user_environment_exception.dart';
 import 'package:session_mate_cli/src/locator.dart';
+import 'package:session_mate_cli/src/services/brew_service.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
-import 'package:session_mate_cli/src/services/pubspec_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 class DriveCommand extends Command {
   // final _analyticsService = locator<AnalyticsService>();
   final _logger = locator<LoggerService>();
-  final _pubspecService = locator<PubspecService>();
+  final _brewService = locator<BrewService>();
 
   @override
   String get description => kCommandDriveDescription;
@@ -64,9 +64,11 @@ class DriveCommand extends Command {
   @override
   Future<void> run() async {
     try {
+      final currentVersion = await _brewService.getCurrentVersion();
+
       _logger.sessionMateOutput(
         message:
-            'Starting SweetCore using SessionMate CLI (${_pubspecService.packageVersion})...',
+            'Starting SweetCore using SessionMate CLI ($currentVersion)...',
       );
 
       final sweetCore = await SweetCore.setup();
