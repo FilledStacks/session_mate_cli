@@ -63,5 +63,9 @@ const String kCommandLoginHelpEmail =
 const String kCommandLoginHelpPassword =
     'Sets the password of the user for authentication.';
 
+const String kCommandLogoutDescription = 'Logs the user out.';
+
+const String kCommandLogoutName = 'logout';
+
 const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';
