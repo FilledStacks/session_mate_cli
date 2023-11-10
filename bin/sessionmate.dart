@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/commands/drive/drive_command.dart';
+import 'package:session_mate_cli/src/commands/login/login_command.dart';
+import 'package:session_mate_cli/src/commands/logout/logout_command.dart';
 import 'package:session_mate_cli/src/commands/sandbox/sandbox_command.dart';
 import 'package:session_mate_cli/src/commands/update/upgrade_command.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
@@ -33,6 +35,8 @@ Future<void> main(List<String> arguments) async {
     //   help: kCommandRunnerDisableAnalyticsHelp,
     // )
     ..addCommand(DriveCommand())
+    ..addCommand(LoginCommand())
+    ..addCommand(LogoutCommand())
     ..addCommand(SandboxCommand())
     ..addCommand(UpgradeCommand());
 

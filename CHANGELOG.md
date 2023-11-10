@@ -1,3 +1,8 @@
+## 0.6.4
+
+- Add `login` command
+- Add `logout` command
+
 ## 0.6.3
 
 - Fix sessionmate `version` option

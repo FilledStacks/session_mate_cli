@@ -4,7 +4,7 @@
 const String kCommandRunnerDescription =
     'The command line tool that performs the session replay actions.';
 
-const String kCommandRunnerName = 'session_mate';
+const String kCommandRunnerName = 'sessionmate';
 
 const String kCommandRunnerVersionHelp = 'Print the current version.';
 
@@ -52,6 +52,20 @@ const String kCommandUpgradeDescription =
 
 const String kCommandSandboxDescription =
     'Uses the sandbox app to test individual pieces of the CLI.';
+
+const String kCommandLoginDescription = 'Logs the user in.';
+
+const String kCommandLoginName = 'login';
+
+const String kCommandLoginHelpEmail =
+    'Sets the email of the user for authentication.';
+
+const String kCommandLoginHelpPassword =
+    'Sets the password of the user for authentication.';
+
+const String kCommandLogoutDescription = 'Logs the user out.';
+
+const String kCommandLogoutName = 'logout';
 
 const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';
