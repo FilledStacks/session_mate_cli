@@ -53,5 +53,15 @@ const String kCommandUpgradeDescription =
 const String kCommandSandboxDescription =
     'Uses the sandbox app to test individual pieces of the CLI.';
 
+const String kCommandLoginDescription = 'Logs the user in.';
+
+const String kCommandLoginName = 'login';
+
+const String kCommandLoginHelpEmail =
+    'Sets the email of the user for authentication.';
+
+const String kCommandLoginHelpPassword =
+    'Sets the password of the user for authentication.';
+
 const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';
