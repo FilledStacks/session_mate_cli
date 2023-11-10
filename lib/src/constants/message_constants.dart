@@ -4,7 +4,7 @@
 const String kCommandRunnerDescription =
     'The command line tool that performs the session replay actions.';
 
-const String kCommandRunnerName = 'session_mate';
+const String kCommandRunnerName = 'sessionmate';
 
 const String kCommandRunnerVersionHelp = 'Print the current version.';
 
