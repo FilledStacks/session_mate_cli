@@ -95,8 +95,9 @@ class MockHttpService extends _i1.Mock implements _i5.HttpService {
   @override
   _i4.Future<void> registerApp({
     required String? apiKey,
-    String? androidAppId,
-    String? iosAppId,
+    required String? name,
+    String? androidId,
+    String? iosId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -104,8 +105,9 @@ class MockHttpService extends _i1.Mock implements _i5.HttpService {
           [],
           {
             #apiKey: apiKey,
-            #androidAppId: androidAppId,
-            #iosAppId: iosAppId,
+            #name: name,
+            #androidId: androidId,
+            #iosId: iosId,
           },
         ),
         returnValue: _i4.Future<void>.value(),

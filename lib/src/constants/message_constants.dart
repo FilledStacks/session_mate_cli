@@ -72,6 +72,8 @@ const String kCommandRegisterAppDescription =
 
 const String kCommandRegisterAppName = 'app';
 
+const String kCommandRegisterAppHelpName = 'Name of the application.';
+
 const String kCommandRegisterAppHelpAndroid =
     'Identifier of the Android application.';
 

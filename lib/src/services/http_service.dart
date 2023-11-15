@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:session_mate_cli/src/exceptions/forbidden_exception.dart';
 import 'package:session_mate_cli/src/exceptions/unauthorized_user_exception.dart';
 import 'package:session_mate_cli/src/exceptions/user_seats_unavailable_exception.dart';
 import 'package:session_mate_cli/src/locator.dart';
@@ -18,7 +19,12 @@ class HttpService {
   final _logger = locator<LoggerService>();
   final _firebaseService = locator<FirebaseService>();
 
-  Future<void> registerApp({String? androidAppId, String? iosAppId}) async {
+  Future<void> registerApp({
+    required String apiKey,
+    required String name,
+    String? androidId,
+    String? iosId,
+  }) async {
     try {
       final token = _firebaseService.hasToken ? _firebaseService.idToken! : '';
       final url = Uri.http(baseUrl, registerAppPath);
@@ -29,17 +35,27 @@ class HttpService {
           'Authorization': 'Bearer $token',
         },
         body: jsonEncode({
-          "apiKey": "fb2e384c-97aa-446a-ac22-c15612be1cb0",
-          "apps": {"androidAppId": androidAppId, "iosAppId": iosAppId}
+          "apiKey": apiKey,
+          "app": {
+            'name': name,
+            'ids': {"android": androidId, "ios": iosId},
+          }
         }),
       );
 
-      if (response.statusCode == 429) {
-        throw Exception(jsonDecode(response.body)['error']['message']);
+      final data = jsonDecode(response.body);
+
+      if (response.statusCode == 401) {
+        throw UnauthorizedUserException(data['message']);
       }
+
+      if (response.statusCode == 403) {
+        throw ForbiddenException(data['message']);
+      }
+
+      if (response.statusCode != 201) throw Exception(data);
     } catch (e) {
       _logger.error(message: e.toString());
-      rethrow;
     }
   }
 
