@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 import 'package:firedart/auth/exceptions.dart';
+import 'package:http/http.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/firebase_service.dart';
@@ -38,9 +39,7 @@ class LoginCommand extends Command {
   @override
   Future<void> run() async {
     try {
-      if (_firebaseService.isSignedIn) {
-        _firebaseService.signOut();
-      }
+      if (_firebaseService.isSignedIn) _firebaseService.signOut();
 
       await _firebaseService.signIn(
         email: argResults!['email'],
@@ -52,8 +51,10 @@ class LoginCommand extends Command {
     } on SignedOutException catch (e, _) {
       _logger.error(message: 'Error:${e.toString()}');
       exit(1);
-    } catch (e, s) {
-      _logger.error(message: 'Error:${e.toString()} StackTrace:\n$s');
+    } on ClientException catch (e, _) {
+      _logger.error(message: 'Connection to ${e.uri?.host} refused.');
+      exit(1);
+    } catch (e, _) {
       exit(1);
     }
   }

@@ -6,6 +6,7 @@ import 'package:session_mate_cli/src/locator.dart';
 import 'path_service.dart';
 
 const _webApiKey = String.fromEnvironment('WEB_API_KEY');
+const _useEmulator = bool.fromEnvironment('USE_EMULATOR', defaultValue: false);
 
 /// Provides functionality to interact with Firebase
 class FirebaseService {
@@ -19,7 +20,11 @@ class FirebaseService {
       path: '${_pathService.configHome.path}/sessionmate',
     );
 
-    _auth = FirebaseAuth.initialize(_webApiKey, _store);
+    _auth = FirebaseAuth.initialize(
+      _webApiKey,
+      _store,
+      useEmulator: _useEmulator,
+    );
   }
 
   bool get hasToken => _store.hasToken;
