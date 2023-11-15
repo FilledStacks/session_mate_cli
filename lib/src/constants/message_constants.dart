@@ -77,5 +77,13 @@ const String kCommandRegisterAppHelpAndroid =
 
 const String kCommandRegisterAppHelpIos = 'Identifier of the iOS application.';
 
+const String kCommandRegisterUserDescription =
+    'Registers an user into the license.';
+
+const String kCommandRegisterUserName = 'user';
+
+const String kCommandRegisterUserHelpEmail =
+    'Email address of the user to register.';
+
 const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';
