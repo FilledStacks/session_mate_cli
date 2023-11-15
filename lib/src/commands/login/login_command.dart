@@ -38,7 +38,9 @@ class LoginCommand extends Command {
   @override
   Future<void> run() async {
     try {
-      if (_firebaseService.isSignedIn) return;
+      if (_firebaseService.isSignedIn) {
+        _firebaseService.signOut();
+      }
 
       await _firebaseService.signIn(
         email: argResults!['email'],
