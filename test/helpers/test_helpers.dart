@@ -4,6 +4,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/brew_service.dart';
+import 'package:session_mate_cli/src/services/http_service.dart';
+import 'package:session_mate_cli/src/services/logger_service.dart';
 import 'package:session_mate_cli/src/services/process_service.dart';
 // @stacked-import
 
@@ -19,6 +21,8 @@ import 'test_helpers.mocks.dart';
   // MockSpec<ColorizedLogService>(onMissingStub: OnMissingStub.returnDefault),
   // MockSpec<ConfigService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<BrewService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<HttpService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<LoggerService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<ProcessService>(onMissingStub: OnMissingStub.returnDefault),
   // MockSpec<AnalyticsService>(onMissingStub: OnMissingStub.returnDefault),
   // MockSpec<PubService>(onMissingStub: OnMissingStub.returnDefault),
@@ -69,6 +73,20 @@ MockBrewService getAndRegisterBrewService() {
   _removeRegistrationIfExists<BrewService>();
   final service = MockBrewService();
   locator.registerSingleton<BrewService>(service);
+  return service;
+}
+
+MockHttpService getAndRegisterHttpService() {
+  _removeRegistrationIfExists<HttpService>();
+  final service = MockHttpService();
+  locator.registerSingleton<HttpService>(service);
+  return service;
+}
+
+MockLoggerService getAndRegisterLoggerService() {
+  _removeRegistrationIfExists<LoggerService>();
+  final service = MockLoggerService();
+  locator.registerSingleton<LoggerService>(service);
   return service;
 }
 
@@ -237,6 +255,8 @@ void registerServices() {
   // getAndRegisterColorizedLogService();
   // getAndRegisterConfigService();
   getAndRegisterBrewService();
+  getAndRegisterHttpService();
+  getAndRegisterLoggerService();
   getAndRegisterProcessService();
   // getAndRegisterAnalyticsService();
   // getAndRegisterPubService();

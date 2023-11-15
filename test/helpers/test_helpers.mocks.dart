@@ -3,11 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
+import 'package:ansicolor/ansicolor.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:session_mate_cli/src/services/brew_service.dart' as _i2;
-import 'package:session_mate_cli/src/services/process_service.dart' as _i4;
+import 'package:session_mate_cli/src/services/brew_service.dart' as _i3;
+import 'package:session_mate_cli/src/services/http_service.dart' as _i5;
+import 'package:session_mate_cli/src/services/logger_service.dart' as _i6;
+import 'package:session_mate_cli/src/services/process_service.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -20,114 +23,275 @@ import 'package:session_mate_cli/src/services/process_service.dart' as _i4;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeAnsiPen_0 extends _i1.SmartFake implements _i2.AnsiPen {
+  _FakeAnsiPen_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [BrewService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBrewService extends _i1.Mock implements _i2.BrewService {
+class MockBrewService extends _i1.Mock implements _i3.BrewService {
   @override
-  _i3.Future<String> getCurrentVersion() => (super.noSuchMethod(
+  _i4.Future<String> getCurrentVersion() => (super.noSuchMethod(
         Invocation.method(
           #getCurrentVersion,
           [],
         ),
-        returnValue: _i3.Future<String>.value(''),
-        returnValueForMissingStub: _i3.Future<String>.value(''),
-      ) as _i3.Future<String>);
+        returnValue: _i4.Future<String>.value(''),
+        returnValueForMissingStub: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
 
   @override
-  _i3.Future<String> getLatestVersion() => (super.noSuchMethod(
+  _i4.Future<String> getLatestVersion() => (super.noSuchMethod(
         Invocation.method(
           #getLatestVersion,
           [],
         ),
-        returnValue: _i3.Future<String>.value(''),
-        returnValueForMissingStub: _i3.Future<String>.value(''),
-      ) as _i3.Future<String>);
+        returnValue: _i4.Future<String>.value(''),
+        returnValueForMissingStub: _i4.Future<String>.value(''),
+      ) as _i4.Future<String>);
 
   @override
-  _i3.Future<bool> hasLatestVersion() => (super.noSuchMethod(
+  _i4.Future<bool> hasLatestVersion() => (super.noSuchMethod(
         Invocation.method(
           #hasLatestVersion,
           [],
         ),
-        returnValue: _i3.Future<bool>.value(false),
-        returnValueForMissingStub: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i4.Future<bool>.value(false),
+        returnValueForMissingStub: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 
   @override
-  _i3.Future<void> install() => (super.noSuchMethod(
+  _i4.Future<void> install() => (super.noSuchMethod(
         Invocation.method(
           #install,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i3.Future<void> update() => (super.noSuchMethod(
+  _i4.Future<void> update() => (super.noSuchMethod(
         Invocation.method(
           #update,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [HttpService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHttpService extends _i1.Mock implements _i5.HttpService {
+  @override
+  _i4.Future<void> registerApp({
+    required String? apiKey,
+    String? androidAppId,
+    String? iosAppId,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #registerApp,
+          [],
+          {
+            #apiKey: apiKey,
+            #androidAppId: androidAppId,
+            #iosAppId: iosAppId,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> registerUser({
+    required String? apiKey,
+    required List<String>? emails,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #registerUser,
+          [],
+          {
+            #apiKey: apiKey,
+            #emails: emails,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+}
+
+/// A class which mocks [LoggerService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockLoggerService extends _i1.Mock implements _i6.LoggerService {
+  @override
+  _i2.AnsiPen get pen => (super.noSuchMethod(
+        Invocation.getter(#pen),
+        returnValue: _FakeAnsiPen_0(
+          this,
+          Invocation.getter(#pen),
+        ),
+        returnValueForMissingStub: _FakeAnsiPen_0(
+          this,
+          Invocation.getter(#pen),
+        ),
+      ) as _i2.AnsiPen);
+
+  @override
+  set pen(_i2.AnsiPen? _pen) => super.noSuchMethod(
+        Invocation.setter(
+          #pen,
+          _pen,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void coloredPrint(
+    _i2.AnsiPen? pen, {
+    required String? message,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #coloredPrint,
+          [pen],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void flutterOutput({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #flutterOutput,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void sessionMateOutput({
+    required String? message,
+    bool? isBold = false,
+  }) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #sessionMateOutput,
+          [],
+          {
+            #message: message,
+            #isBold: isBold,
+          },
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void success({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #success,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void warn({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #warn,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void info({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #info,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void error({required String? message}) => super.noSuchMethod(
+        Invocation.method(
+          #error,
+          [],
+          {#message: message},
+        ),
+        returnValueForMissingStub: null,
+      );
 }
 
 /// A class which mocks [ProcessService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProcessService extends _i1.Mock implements _i4.ProcessService {
+class MockProcessService extends _i1.Mock implements _i7.ProcessService {
   @override
-  _i3.Future<void> runPubGlobalActivate() => (super.noSuchMethod(
+  _i4.Future<void> runPubGlobalActivate() => (super.noSuchMethod(
         Invocation.method(
           #runPubGlobalActivate,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i3.Future<List<String>> runPubGlobalList() => (super.noSuchMethod(
+  _i4.Future<List<String>> runPubGlobalList() => (super.noSuchMethod(
         Invocation.method(
           #runPubGlobalList,
           [],
         ),
-        returnValue: _i3.Future<List<String>>.value(<String>[]),
-        returnValueForMissingStub: _i3.Future<List<String>>.value(<String>[]),
-      ) as _i3.Future<List<String>>);
+        returnValue: _i4.Future<List<String>>.value(<String>[]),
+        returnValueForMissingStub: _i4.Future<List<String>>.value(<String>[]),
+      ) as _i4.Future<List<String>>);
 
   @override
-  _i3.Future<List<String>> runBrewInfo() => (super.noSuchMethod(
+  _i4.Future<List<String>> runBrewInfo() => (super.noSuchMethod(
         Invocation.method(
           #runBrewInfo,
           [],
         ),
-        returnValue: _i3.Future<List<String>>.value(<String>[]),
-        returnValueForMissingStub: _i3.Future<List<String>>.value(<String>[]),
-      ) as _i3.Future<List<String>>);
+        returnValue: _i4.Future<List<String>>.value(<String>[]),
+        returnValueForMissingStub: _i4.Future<List<String>>.value(<String>[]),
+      ) as _i4.Future<List<String>>);
 
   @override
-  _i3.Future<void> runBrewInstallPackage() => (super.noSuchMethod(
+  _i4.Future<void> runBrewInstallPackage() => (super.noSuchMethod(
         Invocation.method(
           #runBrewInstallPackage,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
-  _i3.Future<void> runBrewUpgradePackage() => (super.noSuchMethod(
+  _i4.Future<void> runBrewUpgradePackage() => (super.noSuchMethod(
         Invocation.method(
           #runBrewUpgradePackage,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 
   @override
   void logSuccessStatus(int? exitCode) => super.noSuchMethod(

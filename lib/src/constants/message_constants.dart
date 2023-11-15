@@ -82,8 +82,10 @@ const String kCommandRegisterUserDescription =
 
 const String kCommandRegisterUserName = 'user';
 
-const String kCommandRegisterUserHelpEmail =
-    'Email address of the user to register.';
+const String kCommandRegisterUserHelpEmails =
+    'Email address of the users to register.';
+
+const String kMultiCommandHelpApiKey = 'Api Key which identifies your license.';
 
 const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';
