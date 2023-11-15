@@ -67,5 +67,23 @@ const String kCommandLogoutDescription = 'Logs the user out.';
 
 const String kCommandLogoutName = 'logout';
 
+const String kCommandRegisterAppDescription =
+    'Registers an app into the license.';
+
+const String kCommandRegisterAppName = 'app';
+
+const String kCommandRegisterAppHelpAndroid =
+    'Identifier of the Android application.';
+
+const String kCommandRegisterAppHelpIos = 'Identifier of the iOS application.';
+
+const String kCommandRegisterUserDescription =
+    'Registers an user into the license.';
+
+const String kCommandRegisterUserName = 'user';
+
+const String kCommandRegisterUserHelpEmail =
+    'Email address of the user to register.';
+
 const String kCommandUpgradeName = 'upgrade';
 const String kCommandSandboxName = 'sandbox';
