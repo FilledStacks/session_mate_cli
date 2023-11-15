@@ -26,6 +26,7 @@ dependencies:
   sweetcore:
     git:
       url: git@github.com:filledstacks/sweetcore.git
+  http: ^1.1.0
  
 
 dev_dependencies:
