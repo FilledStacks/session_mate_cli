@@ -1,3 +1,9 @@
+## 0.6.5
+
+- Add register app command
+- Add register user command
+- Update login command to force logout before new login
+
 ## 0.6.4
 
 - Add `login` command
