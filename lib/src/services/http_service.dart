@@ -10,11 +10,10 @@ import 'package:session_mate_cli/src/services/firebase_service.dart';
 import 'logger_service.dart';
 
 class HttpService {
-  static const String baseUrl = '127.0.0.1:5001';
-  static const String registerAppPath =
-      '/sessionmate-93c0e/us-central1/licenses-api/registerApp';
-  static const String registerUserPath =
-      '/sessionmate-93c0e/us-central1/licenses-api/registerUser';
+  static const String baseUrl =
+      'us-central1-sessionmate-93c0e.cloudfunctions.net';
+  static const String registerAppPath = '/licenses-api/registerApp';
+  static const String registerUserPath = '/licenses-api/registerUser';
 
   final _logger = locator<LoggerService>();
   final _firebaseService = locator<FirebaseService>();
@@ -26,6 +25,16 @@ class HttpService {
     String? iosId,
   }) async {
     try {
+      _logger.info(
+        message: '''
+Register App Details ------
+ - Name: $name
+ - AndroidId: $androidId,
+ - iOSId: $iosId,
+
+On license $apiKey
+        ''',
+      );
       final token = _firebaseService.hasToken ? _firebaseService.idToken! : '';
       final url = Uri.http(baseUrl, registerAppPath);
       final response = await http.post(
@@ -43,6 +52,11 @@ class HttpService {
         }),
       );
 
+      _logger.info(
+        message:
+            'Response code ${response.statusCode}, body: ${response.body} \nHEaders:${response.headers}',
+      );
+
       final data = jsonDecode(response.body);
 
       if (response.statusCode == 401) {
@@ -54,6 +68,8 @@ class HttpService {
       }
 
       if (response.statusCode != 201) throw Exception(data);
+
+      _logger.info(message: 'Register complete');
     } catch (e) {
       _logger.error(message: e.toString());
     }
