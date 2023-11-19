@@ -4,8 +4,10 @@ import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/exceptions/invalid_user_environment_exception.dart';
+import 'package:session_mate_cli/src/exceptions/unauthorized_user_exception.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/brew_service.dart';
+import 'package:session_mate_cli/src/services/firebase_service.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
@@ -13,6 +15,7 @@ class DriveCommand extends Command {
   // final _analyticsService = locator<AnalyticsService>();
   final _logger = locator<LoggerService>();
   final _brewService = locator<BrewService>();
+  final _firebaseService = locator<FirebaseService>();
 
   @override
   String get description => kCommandDriveDescription;
@@ -64,6 +67,12 @@ class DriveCommand extends Command {
   @override
   Future<void> run() async {
     try {
+      if (!_firebaseService.isSignedIn) {
+        throw UnauthorizedUserException(
+          'To use this command you must be authenticated. Please use the login command to authenticate yourself.',
+        );
+      }
+
       final currentVersion = await _brewService.getCurrentVersion();
 
       _logger.sessionMateOutput(
@@ -114,12 +123,16 @@ class DriveCommand extends Command {
         appPath: argResults![ksPath],
         apiKey: argResults![ksApiKey],
         additionalCommands: argResults![ksAdditionalCommands],
+        idToken: _firebaseService.idToken,
         verbose: argResults![ksVerbose],
       );
 
       await sweetCore.setupCommunicationWithPackage(
         delay: int.parse(argResults![ksDelay]),
       );
+    } on UnauthorizedUserException catch (e, _) {
+      stdout.writeln(e.toString());
+      exit(1);
     } on InvalidUserEnvironmentException catch (e, _) {
       stdout.writeln(e.toString());
       exit(1);
