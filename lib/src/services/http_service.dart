@@ -36,7 +36,7 @@ On license $apiKey
         ''',
       );
       final token = _firebaseService.hasToken ? _firebaseService.idToken! : '';
-      final url = Uri.http(baseUrl, registerAppPath);
+      final url = Uri.https(baseUrl, registerAppPath);
       final response = await http.post(
         url,
         headers: {
@@ -54,7 +54,7 @@ On license $apiKey
 
       _logger.info(
         message:
-            'Response code ${response.statusCode}, body: ${response.body} \nHEaders:${response.headers}',
+            'Response code ${response.statusCode}, body: ${response.body} \nHeaders:${response.headers}',
       );
 
       final data = jsonDecode(response.body);
@@ -81,7 +81,7 @@ On license $apiKey
   }) async {
     try {
       final token = _firebaseService.hasToken ? _firebaseService.idToken! : '';
-      final url = Uri.http(baseUrl, registerUserPath);
+      final url = Uri.https(baseUrl, registerUserPath);
       final response = await http.post(
         url,
         headers: {
