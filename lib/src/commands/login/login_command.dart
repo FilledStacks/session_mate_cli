@@ -45,6 +45,8 @@ class LoginCommand extends Command {
         email: argResults!['email'],
         password: argResults!['password'],
       );
+
+      _logger.info(message: 'Successful Login.');
     } on AuthException catch (e, _) {
       _logger.error(message: 'Error:${e.message}');
       exit(1);
