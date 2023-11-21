@@ -1,3 +1,7 @@
+## 0.6.7
+
+- changing version because I don't know if homebrew likes the +[number] version control
+
 ## 0.6.6+2
 
 - Fixes workflow dart define
