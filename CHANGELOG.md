@@ -1,3 +1,7 @@
+## 0.6.6+2
+
+- Fixes workflow dart define
+
 ## 0.6.6
 
 - Replace `baseUrl` with production environment
