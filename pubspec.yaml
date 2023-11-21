@@ -16,7 +16,6 @@ dependencies:
   mockito: ^5.4.1
   path: ^1.8.1
   pub_updater: ^0.3.0
-  usage: ^4.1.1
   hive: ^2.2.3
   xdg_directories: ^1.0.3
   firedart:
