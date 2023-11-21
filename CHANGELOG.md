@@ -1,3 +1,11 @@
+## 0.6.6
+
+- Replace `baseUrl` with production environment
+- Add feedback message for successful login
+- Use SSL on network requests
+- Restrict drive command to logged users
+- Remove deprecated package `usage`
+
 ## 0.6.5
 
 - Add register app command
