@@ -11,6 +11,8 @@ import 'package:session_mate_cli/src/services/firebase_service.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
+const _useEmulator = bool.fromEnvironment('USE_FIREBASE_EMULATOR');
+
 class DriveCommand extends Command {
   // final _analyticsService = locator<AnalyticsService>();
   final _logger = locator<LoggerService>();
@@ -124,6 +126,7 @@ class DriveCommand extends Command {
         apiKey: argResults![ksApiKey],
         additionalCommands: argResults![ksAdditionalCommands],
         idToken: _firebaseService.idToken,
+        useFirebaseEmulator: _useEmulator,
         verbose: argResults![ksVerbose],
       );
 
