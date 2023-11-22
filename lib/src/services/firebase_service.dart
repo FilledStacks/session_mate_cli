@@ -5,8 +5,8 @@ import 'package:session_mate_cli/src/locator.dart';
 
 import 'path_service.dart';
 
+const _useEmulator = bool.fromEnvironment('USE_FIREBASE_EMULATOR');
 const _webApiKey = String.fromEnvironment('WEB_API_KEY');
-const _useEmulator = bool.fromEnvironment('USE_EMULATOR', defaultValue: false);
 
 /// Provides functionality to interact with Firebase
 class FirebaseService {

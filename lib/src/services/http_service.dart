@@ -9,14 +9,20 @@ import 'package:session_mate_cli/src/services/firebase_service.dart';
 
 import 'logger_service.dart';
 
+const _useEmulator = bool.fromEnvironment('USE_FIREBASE_EMULATOR');
+
 class HttpService {
-  static const String baseUrl =
-      'us-central1-sessionmate-93c0e.cloudfunctions.net';
-  static const String registerAppPath = '/licenses-api/registerApp';
-  static const String registerUserPath = '/licenses-api/registerUser';
+  static const String _registerAppPath = '/licenses-api/registerApp';
+  static const String _registerUserPath = '/licenses-api/registerUser';
 
   final _logger = locator<LoggerService>();
   final _firebaseService = locator<FirebaseService>();
+
+  final _baseUri = Uri.parse(
+    _useEmulator
+        ? 'http://10.0.2.2:5001/sessionmate-93c0e/us-central1'
+        : 'https://us-central1-sessionmate-93c0e.cloudfunctions.net',
+  );
 
   Future<void> registerApp({
     required String apiKey,
@@ -25,6 +31,12 @@ class HttpService {
     String? iosId,
   }) async {
     try {
+      if (!_firebaseService.isSignedIn) {
+        throw UnauthorizedUserException(
+          'To use this command you must be authenticated. Please use the login command to authenticate yourself.',
+        );
+      }
+
       _logger.info(
         message: '''
 Register App Details ------
@@ -35,13 +47,12 @@ Register App Details ------
 On license $apiKey
         ''',
       );
-      final token = _firebaseService.hasToken ? _firebaseService.idToken! : '';
-      final url = Uri.https(baseUrl, registerAppPath);
+
       final response = await http.post(
-        url,
+        _baseUri.replace(path: _registerAppPath),
         headers: {
           "Content-Type": "application/json",
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer ${_firebaseService.idToken}',
         },
         body: jsonEncode({
           "apiKey": apiKey,
@@ -80,13 +91,17 @@ On license $apiKey
     required List<String> emails,
   }) async {
     try {
-      final token = _firebaseService.hasToken ? _firebaseService.idToken! : '';
-      final url = Uri.https(baseUrl, registerUserPath);
+      if (!_firebaseService.isSignedIn) {
+        throw UnauthorizedUserException(
+          'To use this command you must be authenticated. Please use the login command to authenticate yourself.',
+        );
+      }
+
       final response = await http.post(
-        url,
+        _baseUri.replace(path: _registerUserPath),
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer ${_firebaseService.idToken}',
         },
         body: jsonEncode({'apiKey': apiKey, 'emails': emails}),
       );
