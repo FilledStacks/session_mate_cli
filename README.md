@@ -55,8 +55,16 @@ sessionmate drive -h
 
 ## Development
 
-To use **Firebase Emulator** instead of the production Firebase instance, you need to pass **USE_FIREBASE_EMULATOR** dart define environment variable as below.
+To use **Firebase Emulator** instead of the production Firebase instance, run sessionmate as below.
 
 ```bash
-dart --define=WEB_API_KEY=xxxxxx --define=USE_FIREBASE_EMULATOR=true run bin/sessionmate.dart drive -p .
+dart run bin/sessionmate.dart drive -p .
+```
+
+## Production
+
+To use **Firebase Cloud Instance** you have to pass the **WEB_API_KEY** from the Firebase project as below.
+
+```bash
+dart --define=WEB_API_KEY=XXXXXXXXXXXX run bin/sessionmate.dart drive -p .
 ```

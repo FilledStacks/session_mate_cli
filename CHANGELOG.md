@@ -1,6 +1,12 @@
+## 0.6.8
+
+- Avoid run register commands without authentication
+- Update `session_mate_core` package
+- Update README
+
 ## 0.6.7
 
-- changing version because I don't know if homebrew likes the +[number] version control
+- Changing version because I don't know if homebrew likes the +[number] version control
 
 ## 0.6.6+2
 
