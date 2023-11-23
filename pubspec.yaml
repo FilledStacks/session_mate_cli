@@ -1,6 +1,6 @@
 name: session_mate_cli
 description: The command line tool for SessionMate
-version: 0.6.7
+version: 0.6.8
 publish_to: none
 
 environment:
@@ -21,7 +21,7 @@ dependencies:
   firedart:
     git:
       url: git@github.com:ferrarafer/firedart.git
-  session_mate_core: ^0.3.2
+  session_mate_core: ^0.3.3
   sweetcore:
     git:
       url: git@github.com:filledstacks/sweetcore.git
@@ -34,11 +34,11 @@ dev_dependencies:
 
   build_runner: ^2.4.4
 
-# dependency_overrides:
-#   sweetcore:
-#     path: ../sweetcore
-#   session_mate_core:
-#     path: ../session_mate_core
+dependency_overrides:
+  session_mate_core:
+    path: ../session_mate_core
+  # sweetcore:
+  #   path: ../sweetcore
 
 executables:
   session_mate:
