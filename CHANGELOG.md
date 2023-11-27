@@ -1,3 +1,7 @@
+## 0.6.9
+
+- Add Telemetry support using Posthog service
+
 ## 0.6.8
 
 - Avoid run register commands without authentication
