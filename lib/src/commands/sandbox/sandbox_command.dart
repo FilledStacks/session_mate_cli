@@ -1,13 +1,18 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:args/command_runner.dart';
 import 'package:session_mate_cli/src/constants/command_constants.dart';
 import 'package:session_mate_cli/src/constants/message_constants.dart';
 import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
+import 'package:session_mate_cli/src/services/posthog_service.dart';
 import 'package:session_mate_core/session_mate_core.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 class SandboxCommand extends Command {
   final _logger = locator<LoggerService>();
+  final _posthogService = locator<PosthogService>();
 
   @override
   String get description => kCommandSandboxDescription;
@@ -114,9 +119,20 @@ class SandboxCommand extends Command {
       );
 
       await sweetCore.replayEvents(
-          events: sandboxReplays[argResults![ksSandboxSession]]!);
+        events: sandboxReplays[argResults![ksSandboxSession]]!,
+      );
+
+      await _posthogService.captureSandboxEvent(
+        arguments: argResults!.arguments,
+      );
     } catch (e, s) {
-      _logger.error(message: '${e.toString()} STACKTRACE: \n$s');
+      _logger.error(message: e.toString());
+      await _posthogService.captureExceptionEvent(
+        runtimeType: e.runtimeType.toString(),
+        message: e.toString(),
+        stackTrace: s.toString(),
+      );
+      exit(1);
     }
   }
 }

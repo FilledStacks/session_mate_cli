@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
@@ -9,6 +10,7 @@ import 'package:session_mate_cli/src/locator.dart';
 import 'package:session_mate_cli/src/services/brew_service.dart';
 import 'package:session_mate_cli/src/services/firebase_service.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
+import 'package:session_mate_cli/src/services/posthog_service.dart';
 import 'package:sweetcore/sweetcore.dart';
 
 const _webApiKey = String.fromEnvironment(
@@ -17,10 +19,10 @@ const _webApiKey = String.fromEnvironment(
 );
 
 class DriveCommand extends Command {
-  // final _analyticsService = locator<AnalyticsService>();
   final _logger = locator<LoggerService>();
   final _brewService = locator<BrewService>();
   final _firebaseService = locator<FirebaseService>();
+  final _posthogService = locator<PosthogService>();
 
   @override
   String get description => kCommandDriveDescription;
@@ -30,12 +32,6 @@ class DriveCommand extends Command {
 
   DriveCommand() {
     argParser
-      // ..addFlag(
-      //   ksLogSweetCoreEvents,
-      //   defaultsTo: false,
-      //   help: kCommandDriveHelpLogSweetCoreEvents,
-      //   negatable: false,
-      // )
       ..addFlag(
         ksVerbose,
         abbr: 'v',
@@ -136,14 +132,31 @@ class DriveCommand extends Command {
       await sweetCore.setupCommunicationWithPackage(
         delay: int.parse(argResults![ksDelay]),
       );
+
+      await _posthogService.captureDriveEvent(
+        arguments: argResults!.arguments,
+      );
     } on UnauthorizedUserException catch (e, _) {
       stdout.writeln(e.toString());
+      await _posthogService.captureExceptionEvent(
+        runtimeType: e.runtimeType.toString(),
+        message: e.toString(),
+      );
       exit(1);
     } on InvalidUserEnvironmentException catch (e, _) {
       stdout.writeln(e.toString());
+      await _posthogService.captureExceptionEvent(
+        runtimeType: e.runtimeType.toString(),
+        message: e.toString(),
+      );
       exit(1);
     } catch (e, s) {
-      _logger.error(message: 'Error:${e.toString()} StackTrace:\n$s');
+      _logger.error(message: 'Error:${e.toString()}');
+      await _posthogService.captureExceptionEvent(
+        runtimeType: e.runtimeType.toString(),
+        message: e.toString(),
+        stackTrace: s.toString(),
+      );
       exit(1);
     }
   }
