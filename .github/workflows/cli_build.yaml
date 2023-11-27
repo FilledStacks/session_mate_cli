@@ -36,7 +36,7 @@ jobs:
       - uses: dart-lang/setup-dart@v1
       - run: dart pub get
       - run: mkdir ${{ matrix.runs-on }}
-      - run: dart compile exe -D WEB_API_KEY=${{ secrets.WEB_API_KEY }} bin/sessionmate.dart -o ${{ matrix.runs-on }}/sessionmate
+      - run: dart compile exe -D WEB_API_KEY=${{ secrets.WEB_API_KEY }} -D POSTHOG_API_KEY=${{ secrets.POSTHOG_API_KEY }} bin/sessionmate.dart -o ${{ matrix.runs-on }}/sessionmate
       - run: tar -cvzf ${{ matrix.runs-on }}/${{ matrix.compressed-name }} ${{ matrix.runs-on }}/sessionmate
       - uses: actions/upload-artifact@v2
         with:
