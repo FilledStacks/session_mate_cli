@@ -1,3 +1,7 @@
+## 0.6.10
+
+- Fix `session_mate_core` package dependency
+
 ## 0.6.9
 
 - Add Telemetry support using Posthog service

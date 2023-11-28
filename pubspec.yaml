@@ -1,6 +1,6 @@
 name: session_mate_cli
 description: The command line tool for SessionMate
-version: 0.6.9
+version: 0.6.10
 publish_to: none
 
 environment:
