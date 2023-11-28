@@ -4,13 +4,13 @@ import 'package:session_mate_cli/src/services/firebase_service.dart';
 import 'package:session_mate_cli/src/services/http_service.dart';
 import 'package:session_mate_cli/src/services/logger_service.dart';
 import 'package:session_mate_cli/src/services/path_service.dart';
+import 'package:session_mate_cli/src/services/posthog_service.dart';
 import 'package:session_mate_cli/src/services/process_service.dart';
 import 'package:session_mate_cli/src/services/pub_service.dart';
 
 final locator = GetIt.I;
 
 Future setupLocator() async {
-  // locator.registerLazySingleton(() => AnalyticsService());
   locator.registerLazySingleton(() => LoggerService());
   locator.registerLazySingleton(() => ProcessService());
   locator.registerLazySingleton(() => PathService());
@@ -21,4 +21,8 @@ Future setupLocator() async {
   final firebaseService = FirebaseService();
   await firebaseService.init();
   locator.registerSingleton(firebaseService);
+
+  final posthogService = PosthogService();
+  await posthogService.init();
+  locator.registerSingleton(posthogService);
 }

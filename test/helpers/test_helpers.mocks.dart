@@ -10,6 +10,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:session_mate_cli/src/services/brew_service.dart' as _i3;
 import 'package:session_mate_cli/src/services/http_service.dart' as _i5;
 import 'package:session_mate_cli/src/services/logger_service.dart' as _i6;
+import 'package:session_mate_cli/src/services/posthog_service.dart' as _i8;
 import 'package:session_mate_cli/src/services/process_service.dart' as _i7;
 
 // ignore_for_file: type=lint
@@ -303,4 +304,147 @@ class MockProcessService extends _i1.Mock implements _i7.ProcessService {
         ),
         returnValueForMissingStub: null,
       );
+}
+
+/// A class which mocks [PosthogService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPosthogService extends _i1.Mock implements _i8.PosthogService {
+  @override
+  bool get isFirstRun => (super.noSuchMethod(
+        Invocation.getter(#isFirstRun),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  bool get enabled => (super.noSuchMethod(
+        Invocation.getter(#enabled),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  _i4.Future<void> enable(bool? value) => (super.noSuchMethod(
+        Invocation.method(
+          #enable,
+          [value],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> init() => (super.noSuchMethod(
+        Invocation.method(
+          #init,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureDriveEvent({required List<String>? arguments}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureDriveEvent,
+          [],
+          {#arguments: arguments},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureLoginEvent({required List<String>? arguments}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureLoginEvent,
+          [],
+          {#arguments: arguments},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureLogoutEvent() => (super.noSuchMethod(
+        Invocation.method(
+          #captureLogoutEvent,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureRegisterAppEvent(
+          {required List<String>? arguments}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureRegisterAppEvent,
+          [],
+          {#arguments: arguments},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureRegisterUserEvent(
+          {required List<String>? arguments}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureRegisterUserEvent,
+          [],
+          {#arguments: arguments},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureSandboxEvent({required List<String>? arguments}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureSandboxEvent,
+          [],
+          {#arguments: arguments},
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureUpgradeEvent() => (super.noSuchMethod(
+        Invocation.method(
+          #captureUpgradeEvent,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> captureExceptionEvent({
+    _i8.Level? level = _i8.Level.error,
+    required String? runtimeType,
+    required String? message,
+    String? stackTrace = r'Not Available',
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #captureExceptionEvent,
+          [],
+          {
+            #level: level,
+            #runtimeType: runtimeType,
+            #message: message,
+            #stackTrace: stackTrace,
+          },
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
