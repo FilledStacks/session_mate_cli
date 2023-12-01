@@ -1,3 +1,7 @@
+## 0.6.11
+
+- Update `POSTHOG_API_KEY` to re enable Telemetry
+
 ## 0.6.10
 
 - Fix `session_mate_core` package dependency
